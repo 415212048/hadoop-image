@@ -85,32 +85,31 @@ tar -zxf protobuf-2.5.0.tar.gz
 cd protobuf-2.5.0
 ```
 
-#### 3.2.2 修改autogen.sh文件的第20-24行：
+#### 3.2.2 修改autogen.sh文件的第20-22行：
 
 ```bash
 vi   autogen.sh
 
-# 注释如下红框内注释内容并增加如下：
+# 替换成如下内容：
 
 curl -L   https://github.com/google/googletest/archive/release-1.5.0.tar.gz | tar zx
 
 mv googletest-release-1.5.0 gtest
 ```
 
-![image](https://wiki.huawei.com/vision-file-storage/api/file/download/upload-v2/WIKI202511199090012/33590184/122ddc3e88d647c4ab74f226879a2e5d.png)
 
 #### 3.2.3 打ARM补丁
 
+下载protoc.zip并解压得到protoc.patch文件，其中protoc.patch存放的路径可自己指定。
+
 ```bash
+wget https://mirrors.huaweicloud.com/kunpeng/archive/kunpeng_solution/bigdata/Patch/protoc.zip
+unzip protoc.zip
 cp   protoc.patch ./src/google/protobuf/stubs/
 cd   ./src/google/protobuf/stubs/
 patch   -p1 < protoc.patch
 cd   -
 ```
-
-[protoc.patch.rar](/vision-file-storage/api/file/download/attachment-v2/WIKI202511199090012/33590784/20251119T144928Z_4b85327bc59a4bdbaa6f48dfb7fa4458.rar?attachment_id=33590784)
-
-注：proctoc ARM补丁为**protoc.patch.rar**（从附件中解压获取）；
 
 #### 3.2.4 编译并安装到系统默认目录
 
